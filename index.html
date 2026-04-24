@@ -1,11 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Full Stack Project</title>
-  </head>
-  <body>
-    <!-- You code goes here-->
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MARKET INTEL</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-logo">MARKET INTEL</div>
+    <div class="nav-search">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Enter ticker symbol (AAPL, TSLA, NVDA...)"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="searchBtn">SEARCH</button>
+    </div>
+    <div class="nav-right">
+      <button class="watchlist-nav-btn" id="watchlistToggle">
+        <span>☆</span>
+        <span class="wl-nav-label">WATCHLIST</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== THREE-COLUMN LAYOUT ===== -->
+  <div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">WATCHLIST</div>
+      <div id="watchlistItems" class="watchlist-items">
+        <div class="empty-state">No tickers saved</div>
+      </div>
+    </aside>
+
+    <!-- MAIN PANEL -->
+    <main class="main-panel" id="mainPanel">
+
+      <!-- Landing screen -->
+      <div id="landingState" class="landing-state">
+        <div class="landing-logo">MARKET INTEL</div>
+        <p class="landing-sub">Stock news intelligence, ranked by signal</p>
+        <div class="landing-hints" id="landingHints">
+          <span>AAPL</span><span>TSLA</span><span>NVDA</span>
+          <span>MSFT</span><span>AMZN</span><span>META</span>
+        </div>
+      </div>
+
+      <!-- Stock content (shown after search) -->
+      <div id="stockContent" class="stock-content hidden">
+
+        <!-- Stock header card -->
+        <div class="stock-header-card">
+          <div class="stock-info">
+            <div class="stock-ticker-row">
+              <span class="stock-ticker" id="stockTicker">--</span>
+              <span class="stock-exchange" id="stockExchange">--</span>
+              <button class="add-watchlist-btn" id="addWatchlistBtn">+ WATCHLIST</button>
+            </div>
+            <div class="stock-company" id="stockCompany">--</div>
+            <div class="stock-price-row">
+              <span class="stock-price" id="stockPrice">--</span>
+              <span class="stock-change" id="stockChange">--</span>
+              <span class="stock-change-pct" id="stockChangePct">--</span>
+            </div>
+            <div class="stock-meta">
+              <span class="meta-item">VOL: <span id="stockVolume" class="mono">--</span></span>
+              <span class="meta-sep">|</span>
+              <span class="meta-item" id="stockCurrency">USD</span>
+              <span class="meta-sep">|</span>
+              <span class="meta-item">5-DAY CHART</span>
+            </div>
+          </div>
+          <div class="sparkline-wrap">
+            <canvas id="sparklineCanvas" width="220" height="80"></canvas>
+            <div class="sparkline-labels">
+              <span id="sparkHigh" class="spark-label spark-high">--</span>
+              <span id="sparkLow"  class="spark-label spark-low">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- News loading indicator -->
+        <div id="newsLoader" class="news-loader hidden">
+          <div class="spinner"></div>
+          <span>Ranking news intelligence…</span>
+        </div>
+
+        <!-- News section -->
+        <div class="news-section">
+          <div class="section-header">
+            <span class="section-title">NEWS INTELLIGENCE</span>
+            <span class="section-count" id="newsCount"></span>
+          </div>
+          <div id="newsArticles" class="news-articles"></div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- RIGHT PANEL: Suggestions -->
+    <aside class="right-panel">
+      <div class="sidebar-header">SUGGESTIONS</div>
+      <div id="suggestionsPanel" class="suggestions-panel">
+        <div class="loading-text">Loading…</div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
 </html>
